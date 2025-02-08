@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BMICalculatorApp.BMICalculatorPage"
+             Title="BMICalculatorPage">
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+       ColumnDefinitions="*,*"
+       Margin="20"
+       RowSpacing="15"
+       ColumnSpacing="20" 
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand">
+      
+
+        <Label Text="BMI Calculator"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            FontSize="Large"
+            TextColor="#0a0e29"/>
+
+        <Frame Grid.Row="1"
+            Grid.Column="0" 
+            Padding="20"
+            CornerRadius="15"
+            HasShadow="True"
+            x:Name="FrameMale">
+            <VerticalStackLayout Spacing="10">
+                <Image Source="male.png"
+                    HeightRequest="100"/>
+                <Label Text="Male"
+                    HorizontalOptions="Center"
+                    FontSize="Body"/>
+            </VerticalStackLayout>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer x:Name="TapMale"
+                                   Tapped="TapMale_Tapped"/>
+            </Frame.GestureRecognizers>
+            <Frame.BackgroundColor>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="Android" Value="Transparent"/>
+                    <On Platform="Windows" Value="#0a0e29"/>
+                </OnPlatform>
+            </Frame.BackgroundColor>
+        </Frame>
+
+        <Frame Grid.Row="1"
+            Grid.Column="1"
+            Padding="20"
+            CornerRadius="15"
+            HasShadow="True"
+            x:Name="FrameFemale">
+            <VerticalStackLayout Spacing="10">
+                <Image Source="female.png"
+                    HeightRequest="100" />
+                <Label Text="Female"
+                    HorizontalOptions="Center"
+                    FontSize="Body" />
+            </VerticalStackLayout>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer x:Name="TapFemale"
+                                   Tapped="TapFemale_Tapped"/>
+            </Frame.GestureRecognizers>
+            <Frame.BackgroundColor>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="Android" Value="Transparent"/>
+                    <On Platform="Windows" Value="#fdfdfd"/>
+                </OnPlatform>
+            </Frame.BackgroundColor>
+        </Frame>
+
+
+        <Frame Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Padding="10"
+            CornerRadius="10"
+            HasShadow="True"
+            WidthRequest="315"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Height (inches)"
+                    HorizontalOptions="Center"
+                    FontSize="Body" />
+                <Slider ThumbColor="DeepPink"
+                        MinimumTrackColor="DeepPink"
+                    x:Name="SliderHeight"
+                    Minimum="0"
+                    Maximum="100"
+                    Value="50"/>
+                <Label Text="{Binding Source={x:Reference SliderHeight}, Path=Value, StringFormat='{0:F0}'}"
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    FontAttributes="Bold"
+                    x:Name="LblHeight"/>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Frame Grid.Row="3"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               Padding="10"
+               CornerRadius="10"
+               HasShadow="True"
+               WidthRequest="315"
+               VerticalOptions="Center"
+               HorizontalOptions="Center">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Weight (lbs)"
+                       HorizontalOptions="Center"
+                       FontSize="Body" />
+                <Slider ThumbColor="DeepPink"
+                        MinimumTrackColor="DeepPink"
+                        x:Name="SliderWeight"
+                        Minimum="0"
+                        Maximum="300"
+                        Value="150"/>
+                <Label Text="{Binding Source={x:Reference SliderWeight}, Path=Value, StringFormat='{0:F0}'}"
+                       FontSize="Medium"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"
+                       x:Name="LblWeight"/>
+            </VerticalStackLayout>
+        </Frame>
+
+
+
+        <Button Grid.Row="4"
+             Grid.Column="0"
+             Grid.ColumnSpan="2"
+             Text="Calculate your BMI"
+             FontSize="Medium"
+             Padding="20"
+             FontAttributes="Bold"
+             VerticalOptions="EndAndExpand"
+             CornerRadius="15"
+             BackgroundColor="#0a0e29"
+             x:Name="BtnTap"
+             Clicked="Btn_Clicked"/>
+    </Grid>
+</ContentPage>
