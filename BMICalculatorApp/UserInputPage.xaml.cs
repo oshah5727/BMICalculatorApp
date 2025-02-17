@@ -1,8 +1,8 @@
 namespace BMICalculatorApp;
 
-public partial class BMICalculatorPage : ContentPage
+public partial class UserInputPage : ContentPage
 {
-	public BMICalculatorPage()
+	public UserInputPage()
 	{
 		InitializeComponent();
 
@@ -14,34 +14,31 @@ public partial class BMICalculatorPage : ContentPage
     private void TapMale_Tapped(object sender, TappedEventArgs e)
     {
         choice = "Male";
-        if (DeviceInfo.Platform == DevicePlatform.Android)
-        {
-            FrameMale.BorderColor = Color.FromArgb("#0a0e29");
-            FrameFemale.BorderColor = Color.FromArgb("#fdfdfd");
-        }
-        else
-        {
-            FrameMale.BorderColor = Color.FromArgb("#fdfdfd");
-            FrameFemale.BorderColor = Color.FromArgb("#0a0e29");
-        }
+        UpdateGenderSelection();
     }
 
     private void TapFemale_Tapped(object sender, TappedEventArgs e)
     {
         choice = "Female";
+        UpdateGenderSelection();
+       
+    }
+
+    private void UpdateGenderSelection()
+    {
         if (DeviceInfo.Platform == DevicePlatform.Android)
         {
-            FrameFemale.BorderColor = Color.FromArgb("#0a0e29");
-            FrameMale.BorderColor = Color.FromArgb("#fdfdfd");
+            FrameMale.BorderColor = (choice == "Male") ? Color.FromArgb("#0a0e29") : Color.FromArgb("#fdfdfd");
+            FrameFemale.BorderColor = (choice == "Female") ? Color.FromArgb("#0a0e29") : Color.FromArgb("#fdfdfd");
         }
         else
         {
-            FrameFemale.BorderColor = Color.FromArgb("#fdfdfd");
-            FrameMale.BorderColor = Color.FromArgb("#0a0e29");
+            FrameMale.BorderColor = (choice == "Male") ? Color.FromArgb("#fdfdfd") : Color.FromArgb("#0a0e29");
+            FrameFemale.BorderColor = (choice == "Female") ? Color.FromArgb("#fdfdfd") : Color.FromArgb("#0a0e29");
         }
     }
 
-    private void Btn_Clicked(object sender, EventArgs e)
+    private async void Btn_Clicked(object sender, EventArgs e)
     {
         double heightInches = SliderHeight.Value;
         double weightLbs = SliderWeight.Value;
@@ -57,8 +54,8 @@ public partial class BMICalculatorPage : ContentPage
                            $"Health Status: {healthStatus}\n\n" +
                            $"Recommendations:\n{recommendations}";
 
-
-        DisplayAlert("Your calculated BMI results are:", resultMessage, "Ok");
+        var resultPage = new BMIResultPage(bmi, choice, healthStatus, recommendations);
+        await Navigation.PushAsync(resultPage);
     }
 
     private double CalculateBMI(double weightLbs, double heightInches)
@@ -89,9 +86,9 @@ public partial class BMICalculatorPage : ContentPage
     {
         if (bmi < 18.5)
         {
-            return "- Increase calorie intake with nutrient-rich foods (e.g., nuts, lean protein, whole grains)\n" +
-                   "- Incorporate strength training to build muscle mass\n" +
-                   "- Consult a nutritionist if needed";
+            return "- Increase calorie intake with nutrient-rich foods (e.g., nuts, lean protein, whole grains).\n" +
+                   "- Incorporate strength training to build muscle mass.\n" +
+                   "- Consult a nutritionist if needed.";
         }
         else if (bmi >= 18.5 && bmi < 25)
         {

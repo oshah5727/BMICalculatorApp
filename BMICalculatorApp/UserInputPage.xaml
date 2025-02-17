@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BMICalculatorApp.BMICalculatorPage"
-             Title="BMICalculatorPage">
-    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+             x:Class="BMICalculatorApp.UserInputPage"
+             Title="User Input Page">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
        ColumnDefinitions="*,*"
-       Margin="20"
+       Margin="20,20,20,40"
        RowSpacing="15"
        ColumnSpacing="20" 
         VerticalOptions="FillAndExpand"
         HorizontalOptions="FillAndExpand">
-      
+
 
         <Label Text="BMI Calculator"
-            Grid.Row="0"
+            Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            FontSize="Large"
-            TextColor="#0a0e29"/>
+            FontSize="Medium"
+            TextColor="#0a0e29"
+            VerticalOptions="Start"
+            Margin="0,-30,0,0">
+            <Label.Style>
+                <OnPlatform x:TypeArguments="Style">
+                    <On Platform="Windows">
+                        <Style TargetType="Label">
+                            <Setter Property="FontSize" Value="26"/>
+                            <Setter Property="Margin" Value="0,20,0,0"/>
+                        </Style>
+                    </On>
+                </OnPlatform>
+            </Label.Style>
+        </Label>
 
         <Frame Grid.Row="1"
             Grid.Column="0" 
@@ -126,17 +140,30 @@
 
 
 
+
         <Button Grid.Row="4"
-             Grid.Column="0"
-             Grid.ColumnSpan="2"
-             Text="Calculate your BMI"
-             FontSize="Medium"
-             Padding="20"
-             FontAttributes="Bold"
-             VerticalOptions="EndAndExpand"
-             CornerRadius="15"
-             BackgroundColor="#0a0e29"
-             x:Name="BtnTap"
-             Clicked="Btn_Clicked"/>
+         Grid.Column="0"
+         Grid.ColumnSpan="2"
+         Text="View BMI Results"
+         FontSize="Medium"
+         Padding="20"
+         FontAttributes="Bold"
+         VerticalOptions="CenterAndExpand" 
+         CornerRadius="15"
+         BackgroundColor="#0a0e29"
+         x:Name="BtnTap"
+         Clicked="Btn_Clicked"
+         HorizontalOptions="FillAndExpand">
+            <Button.Style>
+                <OnPlatform x:TypeArguments="Style">
+                    <On Platform="Windows">
+                        <Style TargetType="Button">
+                            <Setter Property="WidthRequest" Value="320"/>
+                        </Style>
+                    </On>
+                </OnPlatform>
+            </Button.Style>
+        </Button>
+
     </Grid>
 </ContentPage>

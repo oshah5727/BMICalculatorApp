@@ -67,7 +67,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="BMICalculatorPage.xaml">
+	  <Compile Update="BMIResultPage.xaml.cs">
+	    <DependentUpon>BMIResultPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="HealthRecPage.xaml.cs">
+	    <DependentUpon>HealthRecPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="UserInputPage.xaml.cs">
+	    <DependentUpon>UserInputPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="HealthRecPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="UserInputPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="BMIResultPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

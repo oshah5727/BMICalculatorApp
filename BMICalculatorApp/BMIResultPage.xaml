@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BMICalculatorApp.BMIResultPage"
+             Title="BMI Result Page">
+
+    <StackLayout Padding="40,60,40,40" Spacing="30"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions="Center">
+
+        <VerticalStackLayout Spacing="20"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center">
+
+            <Label Text="BMI Result"
+               FontSize="Large"
+               TextColor="#0a0e29"
+               HorizontalOptions="Start" />
+
+            <Label x:Name="LblBMI"
+               FontSize="Medium"
+               HorizontalOptions="Start"/>
+
+            <Label x:Name="LblBMICategory"
+               FontSize="Medium"
+               HorizontalOptions="Start"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Spacing="25"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center">
+
+            <Button Text="View Health Recommendations"
+                Clicked="OnRecommendationsButtonClicked"
+                HeightRequest="50"
+                FontSize="Medium"
+                HorizontalOptions="FillAndExpand">
+                <Button.Style>
+                    <OnPlatform x:TypeArguments="Style">
+                        <On Platform="Android">
+                            <Style TargetType="Button">
+                                <Setter Property="WidthRequest" Value="300"/>
+                                <Setter Property="Padding" Value="10,0"/>
+                            </Style>
+                        </On>
+                        <On Platform="Windows">
+                            <Style TargetType="Button">
+                                <Setter Property="WidthRequest" Value="320"/>
+                                <Setter Property="Padding" Value="10,0"/>
+                            </Style>
+                        </On>
+                    </OnPlatform>
+                </Button.Style>
+            </Button>
+
+            <Button Text="Back to User Input Page"
+                Clicked="OnBackToInputPageClicked"
+                HeightRequest="50"
+                FontSize="Medium"
+                HorizontalOptions="FillAndExpand">
+                <Button.Style>
+                    <OnPlatform x:TypeArguments="Style">
+                        <On Platform="Windows">
+                            <Style TargetType="Button">
+                                <Setter Property="WidthRequest" Value="270"/>
+                                <Setter Property="Padding" Value="10,0"/>
+                            </Style>
+                        </On>
+                    </OnPlatform>
+                </Button.Style>
+            </Button>
+
+        </VerticalStackLayout>
+
+    </StackLayout>
+</ContentPage>
